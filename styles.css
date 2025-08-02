@@ -4,12 +4,7 @@ body {
   color: #d8d2c7;
   background-color: #1a1a1a;
 
-  /* Grid background with 50% opacity */
-  background-image:
-    repeating-linear-gradient(0deg, rgba(216, 210, 199, 0.5) 0px, rgba(216, 210, 199, 0.5) 1px, transparent 1px, transparent 40px),
-    repeating-linear-gradient(90deg, rgba(216, 210, 199, 0.5) 0px, rgba(216, 210, 199, 0.5) 1px, transparent 1px, transparent 40px);
-  background-size: 40px 40px;
-  background-position: center;
+ 
 }
 
 header {
