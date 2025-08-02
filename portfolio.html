@@ -1,19 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8">
   <title>معرض الأعمال - VISION</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
     body {
       margin: 0;
       background-color: #0f0f0f;
-      font-family: 'changa', sans-serif;
+      font-family: 'Changa', sans-serif;
       color: #e0e0e0;
       background-image:
-                                 repeating-linear-gradient(0deg, rgba(216, 210, 199, 0.5) 0px, rgba(216, 210, 199, 0.5) 1px, transparent 1px, transparent 40px),
-                                repeating-linear-gradient(90deg, rgba(216, 210, 199, 0.5) 0px, rgba(216, 210, 199, 0.5) 1px, transparent 1px, transparent 40px);
-
+        repeating-linear-gradient(0deg, rgba(216,210,199,0.5) 0px, rgba(216,210,199,0.5) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(216,210,199,0.5) 0px, rgba(216,210,199,0.5) 1px, transparent 1px, transparent 40px);
       background-size: 40px 40px;
     }
 
@@ -40,73 +39,141 @@
       transform: scale(1.1);
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 30px;
-      padding: 60px;
-      justify-items: center;
-    }
-
-    .card {
-      width: 160px;
-      height: 220px;
-      background-color: #bcbcbc;
-      border-radius: 25px;
-      position: relative;
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    /* Slider container */
+    .slider-container {
       overflow: hidden;
+      width: 100%;
+      padding: 40px 0;
     }
 
-    .card:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    /* Slider row */
+    .slider {
+      display: flex;
+      gap: 20px;
+      padding-left: 40px;
+      scroll-behavior: smooth;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
     }
 
-    .card img {
+    .slider::-webkit-scrollbar {
+      display: none;
+    }
+
+    .slider {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    /* Slide cards */
+    .slide {
+      min-width: 160px;
+      height: 220px;
+      border-radius: 25px;
+      background-color: #bcbcbc;
+      position: relative;
+      overflow: hidden;
+      flex: 0 0 auto;
+      transition: transform 0.3s ease;
+    }
+
+    .slide img {
       width: 100%;
       height: 100%;
       object-fit: cover;
       border-radius: 25px;
     }
 
-    .card-number {
-      position: absolute;
-      bottom: 8px;
-      right: 12px;
-      font-weight: bold;
-      font-size: 12px;
-      color: #fff;
+    .slide:hover {
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
     }
 
+    /* Responsive */
     @media (max-width: 768px) {
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-        padding: 30px;
+      .slide {
+        min-width: 200px;
+        height: 260px;
       }
     }
   </style>
 </head>
 <body>
+
   <header>
     <img src="VISION-LOGO.PNG" alt="Vision Logo">
     <a class="back-button" href="index.html">العودة</a>
   </header>
 
-  <section class="gallery">
-    <div class="card"><img src="work4.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work5.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work6.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work7.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work8.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work9.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work10.jpg"><div class="card-number">01</div></div>
-    <div class="card"><img src="work11.jpg"><div class="card-number">01</div></div>
-        <div class="card"><img src="work12.jpg"><div class="card-number">01</div></div>
-        <div class="card"><img src="work13.jpg"><div class="card-number">01</div></div>
-        <div class="card"><img src="work14.jpg"><div class="card-number">01</div></div>
-        <div class="card"><img src="work15.jpg"><div class="card-number">01</div></div>
+  <section class="slider-container">
+    <div class="slider">
+      <div class="slide"><img src="work4.jpg" alt="Work 4"></div>
+      <div class="slide"><img src="work5.jpg" alt="Work 5"></div>
+      <div class="slide"><img src="work6.jpg" alt="Work 6"></div>
+      <div class="slide"><img src="work7.jpg" alt="Work 7"></div>
+      <div class="slide"><img src="work8.jpg" alt="Work 8"></div>
+      <div class="slide"><img src="work9.jpg" alt="Work 9"></div>
+      <div class="slide"><img src="work10.jpg" alt="Work 10"></div>
+      <div class="slide"><img src="work11.jpg" alt="Work 11"></div>
+      <div class="slide"><img src="work12.jpg" alt="Work 12"></div>
+      <div class="slide"><img src="work13.jpg" alt="Work 13"></div>
+      <div class="slide"><img src="work14.jpg" alt="Work 14"></div>
+      <div class="slide"><img src="work15.jpg" alt="Work 15"></div>
+    </div>
   </section>
+
+  <script>
+    const slider = document.querySelector('.slider');
+    let isDown = false;
+    let startX;
+    let scrollLeft;
+
+    // Mouse Events
+    slider.addEventListener('mousedown', (e) => {
+      isDown = true;
+      slider.classList.add('active');
+      startX = e.pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('mouseleave', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mouseup', () => {
+      isDown = false;
+      slider.classList.remove('active');
+    });
+
+    slider.addEventListener('mousemove', (e) => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - slider.offsetLeft;
+      const walk = (x - startX);
+      slider.scrollLeft = scrollLeft - walk;
+    });
+
+    // Touch Events
+    slider.addEventListener('touchstart', (e) => {
+      isDown = true;
+      startX = e.touches[0].pageX - slider.offsetLeft;
+      scrollLeft = slider.scrollLeft;
+    });
+
+    slider.addEventListener('touchend', () => {
+      isDown = false;
+    });
+
+    slider.addEventListener('touchmove', (e) => {
+      if (!isDown) return;
+      const x = e.touches[0].pageX - slider.offsetLeft;
+      const walk = (x - startX);
+      slider.scrollLeft = scrollLeft - walk;
+    });
+  </script>
+
 </body>
 </html>
+
 
