@@ -1,4 +1,4 @@
-/* === إعدادات أساسية === */
+/* إعدادات أساسية */
 body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
@@ -12,7 +12,7 @@ body {
   background-position: center;
 }
 
-/* === الهيدر === */
+/* الهيدر */
 header {
   position: fixed;
   top: 0;
@@ -32,7 +32,6 @@ header {
   height: 40px;
 }
 
-/* زر القائمة للموبايل */
 .menu-toggle {
   display: none;
   font-size: 2rem;
@@ -43,7 +42,6 @@ header {
   margin-right: 1rem;
 }
 
-/* روابط التنقل */
 .nav-links {
   display: flex;
   gap: 1.5rem;
@@ -60,7 +58,7 @@ header {
   color: #054239;
 }
 
-/* === hero === */
+/* hero */
 .hero {
   margin-top: 100px;
   background: url('your-hero-image-or-video.gif') center/cover no-repeat;
@@ -90,6 +88,7 @@ header {
   background: rgba(255, 255, 255, 0.25);
 }
 
+/* المحتوى */
 section {
   padding: 4rem 2rem;
 }
@@ -107,11 +106,12 @@ section {
 }
 
 .card {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
   padding: 2rem;
   border-radius: 1.25rem;
   backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.4);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
@@ -119,6 +119,15 @@ section {
 .card:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* للموبايل: زيادة blur */
+@media (max-width: 768px) {
+  .card {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.08);
+  }
 }
 
 .work-image {
@@ -132,6 +141,7 @@ section {
   margin: auto;
 }
 
+/* footer */
 footer {
   background: #111;
   padding: 3rem 2rem;
@@ -149,7 +159,7 @@ footer a {
   margin-bottom: 1rem;
 }
 
-/* === Animation === */
+/* Animation */
 .fade-in {
   animation: fadeIn 1.5s ease-in-out both;
 }
@@ -159,18 +169,7 @@ footer a {
   to { opacity: 1; transform: translateY(0); }
 }
 
-.scroll-fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* === Responsive: موبايل === */
+/* Responsive */
 @media (max-width: 768px) {
   .menu-toggle {
     display: block;
