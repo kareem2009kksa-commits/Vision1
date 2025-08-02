@@ -1,4 +1,4 @@
-/* ✅ القواعد الأساسية كما هي */
+/* === إعدادات أساسية === */
 body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
@@ -12,52 +12,65 @@ body {
   background-position: center;
 }
 
-/* ✅ تحسينات للهيدر */
+/* === الهيدر === */
 header {
   position: fixed;
   top: 0;
+  right: 0;
   left: 0;
-  width: 100%;
   z-index: 1000;
-
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.5rem;
   background-color: #111;
   border-bottom: 1px solid #222;
-  flex-wrap: wrap;
+  direction: rtl;
 }
 
-/* ✅ تصغير حجم الشعار */
 .logo {
   height: 40px;
 }
 
-/* ✅ تحسين التباعد بين الروابط */
-nav a {
-  margin-left: 1rem;
+/* زر القائمة للموبايل */
+.menu-toggle {
+  display: none;
+  font-size: 2rem;
+  background: none;
+  border: none;
+  color: #d8d2c7;
+  cursor: pointer;
+  margin-right: 1rem;
+}
+
+/* روابط التنقل */
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
   color: #d8d2c7;
   text-decoration: none;
   font-weight: 500;
   transition: color 0.3s;
 }
 
-nav a:hover {
+.nav-links a:hover {
   color: #054239;
 }
 
-/* ✅ تعديل الـ hero لتتناسب مع الموبايل */
+/* === hero === */
 .hero {
-  margin-top: 80px;
+  margin-top: 100px;
   background: url('your-hero-image-or-video.gif') center/cover no-repeat;
   text-align: center;
-  padding: 4rem 1.5rem;
+  padding: 6rem 2rem;
 }
 
 .hero h1 {
-  font-size: 2.2rem;
-  margin-bottom: 1.2rem;
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
 }
 
 .cta-button {
@@ -65,7 +78,7 @@ nav a:hover {
   border: 1px solid rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding: 0.75rem 1.5rem;
+  padding: 1rem 2rem;
   border-radius: 1rem;
   color: #fff;
   font-weight: bold;
@@ -77,152 +90,27 @@ nav a:hover {
   background: rgba(255, 255, 255, 0.25);
 }
 
-/* ✅ توسيع مساحة التنفس */
 section {
-  padding: 3rem 1.5rem;
+  padding: 4rem 2rem;
 }
 
 .section-title {
-  font-size: 1.6rem;
+  font-size: 1.8rem;
   margin-bottom: 2rem;
   text-align: center;
 }
 
-/* ✅ البطاقات مرنة لجميع الشاشات */
 .cards-grid {
   display: grid;
-  gap: 1.5rem;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
 }
 
 .card {
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 1.5rem;
+  padding: 2rem;
   border-radius: 1.25rem;
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(16px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.4);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
-}
-
-.work-image {
-  width: 100%;
-  border-radius: 1rem;
-}
-
-.centered-text {
-  text-align: center;
-  max-width: 700px;
-  margin: auto;
-}
-
-/* ✅ الفوتر */
-footer {
-  background: #111;
-  padding: 2rem 1.5rem;
-  text-align: center;
-}
-
-footer a {
-  color: #808080;
-  margin: 0 0.5rem;
-  text-decoration: none;
-}
-
-.footer-logo {
-  height: 30px;
-  margin-bottom: 1rem;
-}
-
-/* ✅ الحركات */
-.fade-in {
-  animation: fadeIn 1.5s ease-in-out both;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-button, .cta-button, .card, nav a {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-button:hover, .cta-button:hover, .card:hover, nav a:hover {
-  transform: scale(1.05);
-  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
-}
-
-.scroll-fade {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.scroll-fade.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ✅ تحسينات للموبايل */
-@media (max-width: 768px) {
-  header {
-    flex-direction: column;
-    align-items: flex-start;
-    padding: 1rem;
-  }
-
-  nav {
-    width: 100%;
-    margin-top: 1rem;
-  }
-
-  nav a {
-    display: block;
-    margin: 0.5rem 0;
-  }
-
-  .hero h1 {
-    font-size: 1.8rem;
-  }
-
-  .cta-button {
-    width: 100%;
-    text-align: center;
-  }
-
-  .section-title {
-    font-size: 1.5rem;
-  }
-
-  footer a {
-    display: inline-block;
-    margin: 0.5rem;
-  }
-}
-
-/* ✅ دعم إضافي لشاشات أصغر */
-@media (max-width: 480px) {
-  .hero {
-    padding: 3rem 1rem;
-  }
-
-  .hero h1 {
-    font-size: 1.5rem;
-  }
-
-  .cta-button {
-    padding: 0.75rem 1rem;
-    font-size: 1rem;
-  }
-
-  .card {
-    padding: 1rem;
-  }
-}
-
+ 
