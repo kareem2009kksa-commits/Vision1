@@ -111,6 +111,94 @@ section {
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 2rem;
   border-radius: 1.25rem;
-  backdrop-filter: blur(16px);
+  backdrop-filter: blur(12px);
   box-shadow: 0 8px 16px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+.work-image {
+  width: 100%;
+  border-radius: 1rem;
+}
+
+.centered-text {
+  text-align: center;
+  max-width: 700px;
+  margin: auto;
+}
+
+footer {
+  background: #111;
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+footer a {
+  color: #808080;
+  margin-left: 1rem;
+  text-decoration: none;
+}
+
+.footer-logo {
+  height: 40px;
+  margin-bottom: 1rem;
+}
+
+/* === Animation === */
+.fade-in {
+  animation: fadeIn 1.5s ease-in-out both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Responsive: موبايل === */
+@media (max-width: 768px) {
+  .menu-toggle {
+    display: block;
+  }
+
+  .nav-links {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 100%;
+    flex-direction: column;
+    background: #111;
+    padding: 1rem 1.5rem;
+    border-top: 1px solid #222;
+    display: none;
+  }
+
+  .nav-links.show {
+    display: flex;
+  }
+
+  .nav-links a {
+    margin: 0.5rem 0;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
  
