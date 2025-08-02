@@ -7,21 +7,21 @@
   <style>
     body {
       margin: 0;
-      background-color: #0f0f0f;
       font-family: 'Changa', sans-serif;
+      background-color: #0f0f0f;
       color: #e0e0e0;
       background-image:
-        repeating-linear-gradient(0deg, rgba(216,210,199,0.5) 0px, rgba(216,210,199,0.5) 1px, transparent 1px, transparent 40px),
-        repeating-linear-gradient(90deg, rgba(216,210,199,0.5) 0px, rgba(216,210,199,0.5) 1px, transparent 1px, transparent 40px);
+        repeating-linear-gradient(0deg, rgba(216,210,199,0.2) 0px, rgba(216,210,199,0.2) 1px, transparent 1px, transparent 40px),
+        repeating-linear-gradient(90deg, rgba(216,210,199,0.2) 0px, rgba(216,210,199,0.2) 1px, transparent 1px, transparent 40px);
       background-size: 40px 40px;
     }
 
     header {
+      background: #000;
+      padding: 20px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 20px 40px;
-      background-color: #000;
     }
 
     header img {
@@ -39,61 +39,33 @@
       transform: scale(1.1);
     }
 
-    /* Slider container */
-    .slider-container {
-      overflow: hidden;
-      width: 100%;
-      padding: 40px 0;
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 16px;
+      padding: 30px;
     }
 
-    /* Slider row */
-    .slider {
-      display: flex;
-      gap: 20px;
-      padding-left: 40px;
-      scroll-behavior: smooth;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-
-    .slider::-webkit-scrollbar {
-      display: none;
-    }
-
-    .slider {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-
-    /* Slide cards */
-    .slide {
-      min-width: 160px;
-      height: 220px;
-      border-radius: 25px;
-      background-color: #bcbcbc;
-      position: relative;
-      overflow: hidden;
-      flex: 0 0 auto;
-      transition: transform 0.3s ease;
-    }
-
-    .slide img {
+    .gallery img {
       width: 100%;
       height: 100%;
+      aspect-ratio: 3/4;
       object-fit: cover;
-      border-radius: 25px;
+      border-radius: 16px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      cursor: pointer;
     }
 
-    .slide:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 0 15px rgba(255, 255, 255, 0.15);
+    .gallery img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 8px 15px rgba(255, 255, 255, 0.08);
     }
 
-    /* Responsive */
     @media (max-width: 768px) {
-      .slide {
-        min-width: 200px;
-        height: 260px;
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+        padding: 20px;
       }
     }
   </style>
@@ -105,75 +77,21 @@
     <a class="back-button" href="index.html">العودة</a>
   </header>
 
-  <section class="slider-container">
-    <div class="slider">
-      <div class="slide"><img src="work4.jpg" alt="Work 4"></div>
-      <div class="slide"><img src="work5.jpg" alt="Work 5"></div>
-      <div class="slide"><img src="work6.jpg" alt="Work 6"></div>
-      <div class="slide"><img src="work7.jpg" alt="Work 7"></div>
-      <div class="slide"><img src="work8.jpg" alt="Work 8"></div>
-      <div class="slide"><img src="work9.jpg" alt="Work 9"></div>
-      <div class="slide"><img src="work10.jpg" alt="Work 10"></div>
-      <div class="slide"><img src="work11.jpg" alt="Work 11"></div>
-      <div class="slide"><img src="work12.jpg" alt="Work 12"></div>
-      <div class="slide"><img src="work13.jpg" alt="Work 13"></div>
-      <div class="slide"><img src="work14.jpg" alt="Work 14"></div>
-      <div class="slide"><img src="work15.jpg" alt="Work 15"></div>
-    </div>
+  <section class="gallery">
+    <img src="work4.jpg" alt="عمل 4">
+    <img src="work5.jpg" alt="عمل 5">
+    <img src="work6.jpg" alt="عمل 6">
+    <img src="work7.jpg" alt="عمل 7">
+    <img src="work8.jpg" alt="عمل 8">
+    <img src="work9.jpg" alt="عمل 9">
+    <img src="work10.jpg" alt="عمل 10">
+    <img src="work11.jpg" alt="عمل 11">
+    <img src="work12.jpg" alt="عمل 12">
+    <img src="work13.jpg" alt="عمل 13">
+    <img src="work14.jpg" alt="عمل 14">
+    <img src="work15.jpg" alt="عمل 15">
   </section>
-
-  <script>
-    const slider = document.querySelector('.slider');
-    let isDown = false;
-    let startX;
-    let scrollLeft;
-
-    // Mouse Events
-    slider.addEventListener('mousedown', (e) => {
-      isDown = true;
-      slider.classList.add('active');
-      startX = e.pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('mouseleave', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mouseup', () => {
-      isDown = false;
-      slider.classList.remove('active');
-    });
-
-    slider.addEventListener('mousemove', (e) => {
-      if (!isDown) return;
-      e.preventDefault();
-      const x = e.pageX - slider.offsetLeft;
-      const walk = (x - startX);
-      slider.scrollLeft = scrollLeft - walk;
-    });
-
-    // Touch Events
-    slider.addEventListener('touchstart', (e) => {
-      isDown = true;
-      startX = e.touches[0].pageX - slider.offsetLeft;
-      scrollLeft = slider.scrollLeft;
-    });
-
-    slider.addEventListener('touchend', () => {
-      isDown = false;
-    });
-
-    slider.addEventListener('touchmove', (e) => {
-      if (!isDown) return;
-      const x = e.touches[0].pageX - slider.offsetLeft;
-      const walk = (x - startX);
-      slider.scrollLeft = scrollLeft - walk;
-    });
-  </script>
 
 </body>
 </html>
-
 
