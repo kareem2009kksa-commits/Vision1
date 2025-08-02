@@ -1,4 +1,3 @@
-
 body {
   margin: 0;
   font-family: 'Cairo', sans-serif;
@@ -46,7 +45,7 @@ nav a:hover {
 }
 
 .hero {
-  margin-top: 100px; /* مسافة توازي ارتفاع الهيدر */
+  margin-top: 100px;
   background: url('your-hero-image-or-video.gif') center/cover no-repeat;
   text-align: center;
   padding: 6rem 2rem;
@@ -151,6 +150,18 @@ button, .cta-button, .card, nav a {
 button:hover, .cta-button:hover, .card:hover, nav a:hover {
   transform: scale(1.05);
   box-shadow: 0 8px 20px rgba(255, 255, 255, 0.15);
+}
+
+/* Scroll fade effect */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.scroll-fade.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Responsive */
